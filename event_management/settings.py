@@ -6,10 +6,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'dev-secret-key-change-me'
 DEBUG = True
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = [
-    "http://127.0.0.1:8000",
-    "https://*.onrender.com"
-]
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:8000", "https://*.onrender.com"]
+
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -57,11 +56,13 @@ WSGI_APPLICATION = 'event_management.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+
 import dj_database_url
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
-        default='postgresql://event_db_tbhx_user:56Tnl5puHjnziiaFFUTduw4XRhn0Kk76@dpg-d2qtj5d6ubrc73du74rg-a.oregon-postgres.render.com/event_db_tbhx',
+        default='postgresql://eventmanagement_db_uc2m_user:sI4svu3l3AtHUFSlZwfJbCAhbMCa2ebG@dpg-d2qvlh6r433s73evhhvg-a.oregon-postgres.render.com/eventmanagement_db_uc2m',
         conn_max_age=600
     )
 }

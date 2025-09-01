@@ -49,11 +49,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'event_management.wsgi.application'
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+import dj_database_url
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default='postgresql://event_db_tbhx_user:56Tnl5puHjnziiaFFUTduw4XRhn0Kk76@dpg-d2qtj5d6ubrc73du74rg-a.oregon-postgres.render.com/event_db_tbhx',
+        conn_max_age=600
+    )
 }
 
 AUTH_PASSWORD_VALIDATORS = [

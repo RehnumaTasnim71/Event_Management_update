@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Event Management</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body>
+<nav class="navbar is-light" role="navigation">
+  <div class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/events/">All Events</a>
+    </div>
+    <div class="navbar-end">
+      {% if request.user.is_authenticated %}
+        <div class="navbar-item">Hi, {{ request.user.first_name|default:request.user.username }}!</div>
+        <a class="navbar-item" href="{% url 'dashboard' %}">Dashboard</a>
+        <a class="navbar-item" href="{% url 'logout' %}">Logout</a>
+      {% else %}
+        <a class="navbar-item" href="{% url 'login' %}">Login</a>
+        <a class="navbar-item" href="{% url 'signup' %}">Signup</a>
+      {% endif %}
+    </div>
+  </div>
+</nav>
+<section class="section">
+  <div class="container">
+    {% for message in messages %}
+      <div class="notification is-info">{{ message }}</div>
+    {% endfor %}
+    {% block content %}{% endblock %}
+  </div>
+</section>
+</body>
+</html>

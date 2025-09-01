@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="title">All Events</h1>
+
+{% if is_organizer %}
+  <p>Welcome, Organizer! You can manage your events.</p>
+  <a class="button is-primary" href="{% url 'event_create' %}">Create Event</a>
+{% endif %}
+
+<table class="table is-fullwidth mt-3">
+  <thead>
+    <tr><th>Title</th><th>Category</th><th>Date</th><th>Actions</th></tr>
+  </thead>
+  <tbody>
+    {% for e in events %}
+      <tr>
+        <td><a href="{% url 'event_detail' e.id %}">{{ e.title }}</a></td>
+        <td>{{ e.category }}</td>
+        <td>{{ e.date }}</td>
+        <td>
+          {% if is_organizer %}
+            <a class="button is-small" href="{% url 'event_update' e.id %}">Edit</a>
+            <a class="button is-small is-danger" href="{% url 'event_delete' e.id %}">Delete</a>
+          {% endif %}
+        </td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="4">No events yet.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

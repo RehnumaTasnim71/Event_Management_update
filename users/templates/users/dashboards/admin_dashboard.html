@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1 class="title">Admin Dashboard</h1>
+  <ul>
+    <li><a href="{% url 'event_list' %}">Manage Events</a></li>
+    <li>Manage Users (add via admin)</li>
+  </ul>
+{% endblock %}

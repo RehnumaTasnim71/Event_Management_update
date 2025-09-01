@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="card">
+    <header class="card-header">
+      <p class="card-header-title">
+        {{ event.title }}
+      </p>
+    </header>
+    <div class="card-content">
+      <div class="content">
+        <p><strong>Category:</strong> {{ event.category }}</p>
+        <p><strong>Date:</strong> {{ event.date }}</p>
+        <p><strong>Description:</strong> {{ event.description|linebreaks }}</p>
+        <p><strong>Organizer:</strong> {{ event.organizer.username }}</p>
+      </div>
+    </div>
+    <footer class="card-footer">
+      {% if is_organizer %}
+        <a class="card-footer-item button is-small is-info" href="{% url 'event_update' event.id %}">Edit</a>
+        <a class="card-footer-item button is-small is-danger" href="{% url 'event_delete' event.id %}">Delete</a>
+      {% elif is_participant %}
+        {% if rsvped %}
+          <span class="card-footer-item tag is-success">Already RSVP'd</span>
+        {% else %}
+          <a class="card-footer-item button is-primary" href="{% url 'rsvp_event' event.id %}">RSVP</a>
+        {% endif %}
+      {% else %}
+        <a class="card-footer-item button is-warning" href="{% url 'login' %}">Login to RSVP</a>
+      {% endif %}
+    </footer>
+  </div>
+</div>
+{% endblock %}

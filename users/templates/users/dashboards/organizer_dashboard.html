@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1 class="title">Organizer Dashboard</h1>
+  <ul>
+    <li><a href="{% url 'event_list' %}">My/All Events</a></li>
+    <li><a class="button is-primary" href="{% url 'event_create' %}">Create Event</a></li>
+  </ul>
+{% endblock %}

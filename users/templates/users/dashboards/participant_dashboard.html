@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1 class="title">Participant Dashboard</h1>
+  <h2 class="subtitle">Your RSVP'd Events</h2>
+  <ul>
+    {% for event in request.user.rsvp_events.all %}
+      <li>{{ event.title }} — {{ event.date }}</li>
+    {% empty %}
+      <li>No RSVP yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
